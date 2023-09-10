@@ -10,9 +10,14 @@ import (
 
 var randomGenerator = rand.New(rand.NewSource(time.Now().UnixNano()))
 
+func GetRandomProxyFromArray(proxies []string) string {
+	randomIndex := randomGenerator.Intn(len(proxies))
+
+	return proxies[randomIndex]
+}
+
 func GetProxyFromFile(filename string) []string {
-	pfolder := "proxies/"
-	file, err := os.Open(pfolder + filename)
+	file, err := os.Open(filename)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -33,15 +38,8 @@ func GetProxyFromFile(filename string) []string {
 	return proxies
 }
 
-func GetRandomProxyFromArray(proxies []string) string {
-	randomIndex := randomGenerator.Intn(len(proxies))
-
-	return proxies[randomIndex]
-}
-
 func GetRandomProxyByName(filename string) string {
-	pfolder := "proxies/"
-	file, err := os.Open(pfolder + filename)
+	file, err := os.Open(filename)
 
 	if err != nil {
 		log.Fatal(err)
