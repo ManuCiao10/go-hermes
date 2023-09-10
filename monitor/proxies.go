@@ -33,7 +33,7 @@ func GetProxyFromFile(filename string) []string {
 	return proxies
 }
 
-func GetRandomPorxyFromArray(proxies []string) string {
+func GetRandomProxyFromArray(proxies []string) string {
 	randomIndex := randomGenerator.Intn(len(proxies))
 
 	return proxies[randomIndex]
