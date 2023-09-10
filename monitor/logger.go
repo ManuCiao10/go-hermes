@@ -43,9 +43,11 @@ func (cl *CustomLogger) Info(v ...interface{}) {
 	var message string
 
 	for _, m := range v {
-		message += fmt.Sprintf("%s ", m)
+		message += fmt.Sprintf("%v ", m)
 	}
 
-	fmt.Printf("[%s] %s%s\n", getCurrentTimeWithMillis(), cl.params, message)
-	fmt.Fprintf(cl.logFile, "[%s] %s%s\n", getCurrentTimeWithMillis(), cl.params, message)
+	logMessage := fmt.Sprintf("[%s] %s%s\n", getCurrentTimeWithMillis(), cl.params, message)
+
+	fmt.Print(logMessage)
+	fmt.Fprint(cl.logFile, logMessage)
 }
