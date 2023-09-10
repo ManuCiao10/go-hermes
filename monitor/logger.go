@@ -51,3 +51,7 @@ func (cl *CustomLogger) Info(v ...interface{}) {
 	fmt.Print(logMessage)
 	fmt.Fprint(cl.logFile, logMessage)
 }
+
+func TestImprotedModule() {
+	fmt.Println("TestImprotedModule")
+}
