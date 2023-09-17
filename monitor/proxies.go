@@ -62,3 +62,35 @@ func GetRandomProxyByName(filename string) string {
 
 	return proxies[randomIndex]
 }
+
+func PickRandomProxyMapKey(m map[string]bool) string {
+	for k := range m {
+		return k
+	}
+	return ""
+}
+
+func SaveProxyToMap(filePath string, m map[string]bool) error {
+	file, err := os.Open(filePath)
+	if err != nil {
+		return err
+	}
+
+	defer func(file *os.File) {
+		err := file.Close()
+		if err != nil {
+
+		}
+	}(file)
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		m[scanner.Text()] = true
+	}
+
+	if err := scanner.Err(); err != nil {
+		return err
+	}
+
+	return nil
+}
