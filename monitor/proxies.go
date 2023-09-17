@@ -79,7 +79,7 @@ func SaveProxyToMap(filePath string, m map[string]bool) error {
 	defer func(file *os.File) {
 		err := file.Close()
 		if err != nil {
-
+			return
 		}
 	}(file)
 
